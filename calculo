@@ -1,0 +1,50 @@
+import React, { useState } from 'react';
+import { View, Text, TextInput, Button } from 'react-native';
+export default function App() {
+  const [base, setBase] = useState('');
+  const [altura, setAltura] = useState('');
+  const [area, setArea] = useState(0);
+
+  function calcularArea() {
+    const b = parseFloat(base);
+    const h = parseFloat(altura);
+    const resultado = b * h;
+    setArea(resultado);      }
+
+  function limparCampos() {
+    setBase('');
+    setAltura('');
+    setArea(0);     }
+
+return (
+  <View style={{ padding: 20 }}>
+  <Text style={{ fontSize: 24, marginBottom: 10 }}> Cálculo da Área </Text>
+
+      <TextInput
+        placeholder="Digite a base"
+        keyboardType="numeric"
+        style={{ borderWidth: 1, marginBottom: 10, padding: 8 }}
+        onChangeText={setBase}
+        value={base}
+      />
+
+<TextInput
+        placeholder="Digite a altura"
+        keyboardType="numeric"
+        style={{ borderWidth: 1, marginBottom: 10, padding: 8 }}
+        onChangeText={setAltura}
+        value={altura}
+      />
+
+      <Button title="Calcular Área" onPress={calcularArea} />
+
+      <Text style={{ fontSize: 28, marginTop: 20 }}>
+        Área: {area}
+      </Text>
+
+      <View style={{ marginTop: 10 }}>
+        <Button title="Limpar" color="red" onPress={limparCampos} />
+      </View>
+    </View>
+  );
+}
